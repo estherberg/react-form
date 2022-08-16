@@ -5,7 +5,7 @@ import invalid from "./invalide.jpg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 let clickImageEmail = false;
-let clickImageTelegram = false;
+let clickImageTelegram = true;
 const notify = () => toast("Your informations has been saved!");
 
 class App extends React.Component {
@@ -13,11 +13,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       imgEmail: valid,
-      imgTelegram: valid,
+      imgTelegram: invalid,
     };
     this.clickEmail = this.clickEmail.bind(this);
     this.clickTelegram = this.clickTelegram.bind(this);
   }
+
+
+  
 
   clickEmail(event) {
     clickImageEmail = !clickImageEmail;
@@ -65,6 +68,7 @@ class App extends React.Component {
                 id="firstName"
                 name="firstName"
                 type="text"
+                placeholder="Test"
                 required
               ></input>
             </div>
@@ -80,6 +84,7 @@ class App extends React.Component {
                 id="lastName"
                 name="lastName"
                 type="text"
+                placeholder="User"
                 required
               ></input>
             </div>
@@ -97,6 +102,7 @@ class App extends React.Component {
               id="email"
               name="email"
               type="email"
+              placeholder="@ test@user.com"
               required
             ></input>
           </div>
@@ -121,7 +127,6 @@ class App extends React.Component {
             <div>
               <div className="flex justify-end pr-8 pb-2">
                 <button className="btn">
-                  {/*<img src={clickclickImageEmailMail ? valid : invalid} className="App-logo" alt="logo" width="25" onClick={clickMail}/>*/}
                   <img
                     src={this.state.imgEmail}
                     className="App-logo"
