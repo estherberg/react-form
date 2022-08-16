@@ -2,8 +2,11 @@ import "./index.css";
 import React from "react";
 import valid from "./valide.jpg";
 import invalid from "./invalide.jpg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 let clickImageEmail = false;
 let clickImageTelegram = false;
+const notify = () => toast("Your informations has been saved!");
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +40,7 @@ class App extends React.Component {
       "First name : " + firstName.value,
       "\nLast Name : " + lastName.value + "\nEmail : " + email.value
     );
+    notify();
   };
 
   render() {
@@ -94,10 +98,7 @@ class App extends React.Component {
               name="email"
               type="email"
               required
-            >
-              {/*value={email} onChange={clickEmail}*/}
-            </input>
-            {/*{error && <h2 style={{color: 'red'}}>{error}</h2>}*/}
+            ></input>
           </div>
           {/*Notifications*/}
           <div className="grid grid-cols-2 lg:grid-flow-col pt-5">
@@ -154,11 +155,10 @@ class App extends React.Component {
               </button>
             </div>
           </div>
+          <div>
+            <ToastContainer />
+          </div>
         </form>
-        {/*<button onClick={() => openInNewTab('@./aboutus.js')}>*/}
-        {/*<button onClick={() =>  window.location.href='/aboutus.js'}>*/}
-        {/*    Open google*/}
-        {/*</button>*/}
       </div>
     );
   }
