@@ -1,60 +1,61 @@
 import "./index.css";
 import React from "react";
-import valid from "./valide.jpg";
-import invalid from "./invalide.jpg";
-import { ToastContainer, toast } from "react-toastify";
+import valid from "./valid.jpg";  // Importing an image for the "valid" state
+import invalid from "./invalid.jpg";  // Importing an image for the "invalid" state
+import { ToastContainer, toast } from "react-toastify";  // Importing toast notification components and styles
 import "react-toastify/dist/ReactToastify.css";
-let clickImageEmail = false;
-let clickImageTelegram = true;
-const notify = () => toast("Your informations has been saved!");
+
+let clickImageEmail = false;  // Variable to track the click state of the email button
+let clickImageTelegram = true;  // Variable to track the click state of the Telegram button
+
+const notify = () => toast("Your information has been saved!");  // Function to display a toast notification
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imgEmail: valid,
-      imgTelegram: invalid,
+      imgEmail: valid,  // Initial image state for the email button
+      imgTelegram: invalid,  // Initial image state for the Telegram button
     };
     this.clickEmail = this.clickEmail.bind(this);
     this.clickTelegram = this.clickTelegram.bind(this);
   }
 
-
-  
-
+  // Function to handle click events on the email button
   clickEmail(event) {
-    clickImageEmail = !clickImageEmail;
-    // console.log(clickImageEmail)
+    clickImageEmail = !clickImageEmail;  // Toggling the click state
     event.preventDefault();
-    this.setState({ imgEmail: clickImageEmail ? invalid : valid });
+    this.setState({ imgEmail: clickImageEmail ? invalid : valid });  // Updating the image state based on the click state
   }
 
+  // Function to handle click events on the Telegram button
   clickTelegram(event) {
-    clickImageTelegram = !clickImageTelegram;
-    // console.log(clickImageTelegram)
+    clickImageTelegram = !clickImageTelegram;  // Toggling the click state
     event.preventDefault();
-    this.setState({ imgTelegram: clickImageTelegram ? invalid : valid });
+    this.setState({ imgTelegram: clickImageTelegram ? invalid : valid });  // Updating the image state based on the click state
   }
 
+  // Function to handle form submission
   validForm = async (e) => {
     e.preventDefault();
-    const { firstName, lastName, email } = e.target.elements;
+    const { firstName, lastName, email } = e.target.elements;  // Retrieving form input values
     console.log(
-      "First name : " + firstName.value,
-      "\nLast Name : " + lastName.value + "\nEmail : " + email.value
+      "First name: " + firstName.value,
+      "\nLast Name: " + lastName.value + "\nEmail: " + email.value
     );
-    notify();
+    notify();  // Displaying a toast notification
   };
 
   render() {
     return (
       <div className="App">
         <form onSubmit={this.validForm} className="form">
-          {/*titre*/}
+          {/* Title */}
           <div className="flex justify-start">
-            <h1 className="title">Your profil</h1>
+            <h1 className="title">Your profile</h1>
           </div>
-          {/*fistname / lastname*/}
+
+          {/* First name / Last name */}
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
@@ -89,7 +90,8 @@ class App extends React.Component {
               ></input>
             </div>
           </div>
-          {/*Email*/}
+
+          {/* Email */}
           <div className="w-full">
             <label
               className="flex justify-start block tracking-wide text-gray-2500 text-sm font-bold mb-2"
@@ -106,7 +108,8 @@ class App extends React.Component {
               required
             ></input>
           </div>
-          {/*Notifications*/}
+
+          {/* Notifications */}
           <div className="grid grid-cols-2 lg:grid-flow-col pt-5">
             <div className="notif">
               <p className="flex justify-start text-sm font-bold">
@@ -119,6 +122,7 @@ class App extends React.Component {
               </p>
             </div>
           </div>
+
           <div className="grid grid-cols-2 lg:grid-flow-col pt-2">
             <div className="">
               <p className="flex justify-start text-sm pb-2">Email</p>
@@ -149,7 +153,8 @@ class App extends React.Component {
               </div>
             </div>
           </div>
-          {/*bouton save*/}
+
+          {/* Save button */}
           <div className="w-full">
             <div className="md:items-center py-6 px-3">
               <button
@@ -160,8 +165,9 @@ class App extends React.Component {
               </button>
             </div>
           </div>
+
           <div>
-            <ToastContainer />
+            <ToastContainer />  // Container for toast notifications
           </div>
         </form>
       </div>
